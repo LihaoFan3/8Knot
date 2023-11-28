@@ -221,7 +221,7 @@ def process_data(df: pd.DataFrame, interval):
     x_r, x_name, hover, period = get_graph_time_values(interval)
     # convert to datetime objects rather than strings
     # ADD ANY OTHER COLUMNS WITH DATETIME
-    df["created"] = pd.to_datetime(df["created"], utc=True)
+    df["release_published_at"] = pd.to_datetime(df["release_published_at"], utc=True)
 
     # filter values based on date picker
     #df = df[df.created >= (dt.date.today() - period)]
