@@ -62,7 +62,7 @@ def RELEASES_query(self, repos):
                     release_updated_at
                     FROM augur_data.releases JOIN augur_data.repo ON releases.repo_id = repo.repo_id
                     WHERE
-                        releases.release_published_at is not null and 
+                        releases.release_created_at is not null and 
                         releases.repo_id in ({str(repos)[1:-1]})
 
                     """
