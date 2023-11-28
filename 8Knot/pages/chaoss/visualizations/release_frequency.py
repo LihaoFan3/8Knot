@@ -240,9 +240,10 @@ def create_figure(df: pd.DataFrame, interval):
     fig = px.scatter(
         df,
         x="release_published_at",
-        y=0,
+        y="repo_name",
         color="repo_name",
-        size=1,
+        size="id",
+        size_max = 10,  
         hover_data=["repo_name", "release_name", "release_published_at"],
         color_discrete_sequence=color_seq
     )
