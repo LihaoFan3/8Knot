@@ -54,9 +54,9 @@ def RELEASES_query(self, repos):
     # else:
     #     interval_str = "year"
     query_string = f"""
-                    SELECT repo_id as id, 
-                    repo_name, 
-                    release_name, 
+                    SELECT releases.repo_id as id, 
+                    releases.repo_name, 
+                    releasees.release_name, 
                     release_published_at, 
                     release_created_at as created, 
                     release_updated_at
