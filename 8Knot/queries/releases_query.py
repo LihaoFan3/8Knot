@@ -56,7 +56,7 @@ def RELEASES_query(self, repos):
     query_string = f"""
                     SELECT repo.repo_id as id, 
                     releases.repo_name, 
-                    releasees.release_name, 
+                    releases.release_name, 
                     release_published_at, 
                     release_created_at as created, 
                     release_updated_at
