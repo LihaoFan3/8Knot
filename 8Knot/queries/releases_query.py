@@ -57,9 +57,9 @@ def RELEASES_query(self, repos):
                     SELECT repo.repo_id as id, 
                     releases.repo_name, 
                     releases.release_name, 
-                    release_published_at, 
-                    release_created_at as created, 
-                    release_updated_at
+                    releases.release_published_at, 
+                    releases.release_created_at as created, 
+                    releases.release_updated_at
                     FROM augur_data.releases JOIN augur_data.repo ON releases.repo_id = repo.repo_id
                     WHERE
                         releases.release_created_at is not null and 
