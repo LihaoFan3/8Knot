@@ -18,7 +18,11 @@ layout = dbc.Container(
             [
                 dbc.Col(gc_contrib_importance_pie, width=6),
                 dbc.Col(gc_project_velocity, width=6),
-                dbc.Col(gc_RELEASE_FREQUENCY, width=6)
+            ],
+        ),
+        dbc.Row(
+            [
+                dbc.Col(gc_RELEASE_FREQUENCY, width=6),
             ],
             align="center",
             style={"marginBottom": ".5%"},

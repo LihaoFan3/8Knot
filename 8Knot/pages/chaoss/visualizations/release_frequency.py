@@ -191,7 +191,8 @@ def toggle_popover(n, is_open):
 def RELEASE_FREQUENCY_graph(repolist, interval):
     # wait for data to asynchronously download and become available.
     cache = cm()
-    df = cache.grabm(func=rq, repos=repolist),
+    logging.info(f"{repolist}")
+    df = cache.grabm(func=rq, repos=repolist)
     while df is None:
         time.sleep(1.0)
         df = cache.grabm(func=rq, repos=repolist)
@@ -220,10 +221,10 @@ def process_data(df: pd.DataFrame, interval):
     x_r, x_name, hover, period = get_graph_time_values(interval)
     # convert to datetime objects rather than strings
     # ADD ANY OTHER COLUMNS WITH DATETIME
-    df["release_published_at"] = pd.to_datetime(df["release_published_at"], utc=True)
+    df["created"] = pd.to_datetime(df["created"], utc=True)
 
     # filter values based on date picker
-    df = df[df.release_published_at >= (dt.date.today() - period)]
+    df = df[df.created >= (dt.date.today() - period)]
 
     """LOOK AT OTHER VISUALIZATIONS TO SEE IF ANY HAVE A SIMILAR DATA PROCESS"""
 

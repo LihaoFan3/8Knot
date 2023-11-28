@@ -1,10 +1,10 @@
-import logging
-import pandas as pd
-from db_manager.augur_manager import AugurManager
-from app import celery_app
-from cache_manager.cache_manager import CacheManager as cm
+import logging 
+import pandas as pd 
+from db_manager.augur_manager import AugurManager 
+from app import celery_app 
+from cache_manager.cache_manager import CacheManager as cm 
 import io
-import datetime as dt
+import datetime as dt 
 from sqlalchemy.exc import SQLAlchemyError
 
 """
@@ -54,11 +54,15 @@ def RELEASES_query(self, repos):
     # else:
     #     interval_str = "year"
     query_string = f"""
-                    SELECT repo_name, release_name, release_published_at, release_created_at, release_updated_at
-
+                    SELECT repo_id as id, 
+                    repo_name, 
+                    release_name, 
+                    release_published_at, 
+                    release_created_at as created, 
+                    release_updated_at
                     FROM augur_data.releases JOIN augur_data.repo ON releases.repo_id = repo.repo_id
-
                     WHERE
+                        releases.release_published_at is not null and 
                         releases.repo_id in ({str(repos)[1:-1]})
 
                     """
