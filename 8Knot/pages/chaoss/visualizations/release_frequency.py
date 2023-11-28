@@ -224,7 +224,8 @@ def process_data(df: pd.DataFrame, interval):
     df["created"] = pd.to_datetime(df["created"], utc=True)
 
     # filter values based on date picker
-    df = df[df.created >= (dt.date.today() - period)]
+    #df = df[df.created >= (dt.date.today() - period)]
+    df = df[pd.to_datetime(df.release_published_at).dt.date >= (dt.date.today() - dt.timedelta(days=365))]
 
     """LOOK AT OTHER VISUALIZATIONS TO SEE IF ANY HAVE A SIMILAR DATA PROCESS"""
 
