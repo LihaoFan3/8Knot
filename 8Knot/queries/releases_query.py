@@ -98,6 +98,7 @@ def RELEASES_query(self, repos):
     pic = []
 
     for i, r in enumerate(repos):
+        logging.info("iteration {i} and repo {r}")
         # convert series to a dataframe
         c_df = pd.DataFrame(df.loc[df["id"] == r]).reset_index(drop=True)
 
@@ -125,6 +126,7 @@ def RELEASES_query(self, repos):
         repos=repos,
         datas=pic,
     )
+    logging.info("here after ack")
     logging.warning(f"{QUERY_NAME}_DATA_QUERY - END")
 
     return ack
