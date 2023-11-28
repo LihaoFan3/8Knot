@@ -201,7 +201,7 @@ def RELEASE_FREQUENCY_graph(repolist, interval):
     logging.warning(f"{VIZ_ID}- START")
     logging.warning(df)
     # test if there is data
-    if df[0].empty:
+    if df.empty:
         logging.warning(f"{VIZ_ID} - NO DATA AVAILABLE")
         return nodata_graph
 
