@@ -20,14 +20,14 @@ import app
 
 
 PAGE = "chaoss"
-VIZ_ID = "project-velocity"
+VIZ_ID = "TestGraph0_name_test_Graph0"
 
-gc_project_velocity = dbc.Card(
+TestGraph1 = dbc.Card(
     [
         dbc.CardBody(
             [
                 html.H3(
-                    "Project Velocity",
+                    "TestGraph1",
                     className="card-title",
                     style={"textAlign": "center"},
                 ),
@@ -69,7 +69,7 @@ gc_project_velocity = dbc.Card(
                                         size="sm",
                                     ),
                                     className="me-2",
-                                    width=2,
+                                    width=1,
                                 ),
                                 dbc.Label(
                                     "Issue Closed Weight:",
@@ -87,7 +87,24 @@ gc_project_velocity = dbc.Card(
                                         size="sm",
                                     ),
                                     className="me-2",
-                                    width=2,
+                                    width=1,
+                                ),
+                                dbc.Label(
+                                    "Y-axis:",
+                                    html_for=f"graph-view-{PAGE}-{VIZ_ID}",
+                                    width="auto",
+                                ),
+                                dbc.Col(
+                                    dbc.RadioItems(
+                                        id=f"graph-view-{PAGE}-{VIZ_ID}",
+                                        options=[
+                                            {"label": "Non-log", "value": False},
+                                            {"label": "Log", "value": True},
+                                        ],
+                                        value=False,
+                                        inline=True,
+                                    ),
+                                    className="me-2",
                                 ),
                             ],
                             align="center",
@@ -110,7 +127,7 @@ gc_project_velocity = dbc.Card(
                                         size="sm",
                                     ),
                                     className="me-2",
-                                    width=2,
+                                    width=1,
                                 ),
                                 dbc.Label(
                                     "PR Merged Weight:",
@@ -128,13 +145,8 @@ gc_project_velocity = dbc.Card(
                                         size="sm",
                                     ),
                                     className="me-2",
-                                    width=2,
+                                    width=1,
                                 ),
-                            ],
-                            align="center",
-                        ),
-                        dbc.Row(
-                            [
                                 dbc.Label(
                                     "PR Closed Weight:",
                                     html_for=f"pr-closed-weight-{PAGE}-{VIZ_ID}",
@@ -151,24 +163,7 @@ gc_project_velocity = dbc.Card(
                                         size="sm",
                                     ),
                                     className="me-2",
-                                    width=2,
-                                ),
-                                dbc.Label(
-                                    "Y-axis:",
-                                    html_for=f"graph-view-{PAGE}-{VIZ_ID}",
-                                    width="auto",
-                                ),
-                                dbc.Col(
-                                    dbc.RadioItems(
-                                        id=f"graph-view-{PAGE}-{VIZ_ID}",
-                                        options=[
-                                            {"label": "Non-log", "value": False},
-                                            {"label": "Log", "value": True},
-                                        ],
-                                        value=False,
-                                        inline=True,
-                                    ),
-                                    className="me-2",
+                                    width=1,
                                 ),
                             ],
                             align="center",
