@@ -31,7 +31,7 @@ import flask
 
 # list of queries to be run
 
-QUERIES = [iq, cq, cnq, prq, cmq, iaq, praq, prr, cpfq, rfq]
+QUERIES = [iq, cq, cnq, prq, cmq, iaq, praq, prr, cpfq, rfq,rq]
 
 
 # check if login has been enabled in config
