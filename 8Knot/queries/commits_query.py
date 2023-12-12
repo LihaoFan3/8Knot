@@ -43,9 +43,9 @@ def commits_query(self, repos):
     # the now-removed values.
     query_string = f"""
                     SELECT
-                        distinct
+                        -- distinct
                         r.repo_id AS id,
-                        -- r.repo_name,
+                        r.repo_name,
                         c.cmt_commit_hash AS commits,
                         -- c.cmt_id AS file,
                         -- c.cmt_added AS lines_added,
@@ -88,7 +88,7 @@ def commits_query(self, repos):
     for r in repos:
         # convert series to a dataframe
         # once we've stored the data by ID we no longer need the column.
-        c_df = pd.DataFrame(df.loc[df["id"] == r].drop(columns=["id"])).reset_index(drop=True)
+        c_df = pd.DataFrame(df.loc[df["id"] == r]).reset_index(drop=True)
 
         # bytes buffer to be written to
         b = io.BytesIO()
