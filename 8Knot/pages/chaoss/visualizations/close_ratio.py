@@ -20,14 +20,14 @@ from datetime import date
 
 
 PAGE = "chaoss"
-VIZ_ID = "TestGraph0_name_test_Graph4"
+VIZ_ID = "close_ratio_viz"
 
-TestGraph4 = dbc.Card(
+gc_close_ratio = dbc.Card(
     [
         dbc.CardBody(
             [
                 html.H3(
-                    "TestGraph4",
+                    "Close Ratio",
                     className="card-title",
                     style={"textAlign": "center"},
                 ),
@@ -228,13 +228,6 @@ def process_data(
         columns={"cntrb_id": "num_unique_contributors"}
     )
 
-    # print("_______________________-testGraph4")
-    # print("_______________________-testGraph4")
-    # print("_______________________-testGraph4")
-    # print("_______________________-testGraph4")
-    # print("_______________________-testGraph4")
-    # print("_______________________-testGraph4")
-    # print("_______________________-testGraph4")
     closedNumberList=[]
     openedNumberList=[]
     dateList=[]
@@ -246,12 +239,10 @@ def process_data(
     lMonth=lastLine['created_at'].iloc[0].month
     if fYear<(lYear-1):
         fYear=lYear-1
-    # print("___________________________________getin 0 ")
     residualOpen=0
     for yearCur in range(fYear,lYear+1):
         monthStart=1
         monthEnd=12
-        # print("___________________________________getin 0 ")
         if yearCur==lYear:
             monthEnd=lMonth
         if yearCur==fYear:
@@ -262,17 +253,12 @@ def process_data(
             mergedNumberMonth=0
             yearNex = yearCur
             monthNex =monthCur+1
-            # print("___________________________________getin 1 ")
             if monthCur==12:
                     monthNex=1
                     yearNex=yearCur+1
-            # print("___________________________________getin2 ")
             ts = pd.to_datetime(str(yearCur) + "-" + str(monthCur),utc=True)
-            # print(type(ts))
             tsNext=pd.to_datetime(str(yearNex) + "-" + str(monthNex),utc=True)
             dfCur=df.loc[(df['created_at']>ts)&(df['created_at']<tsNext)]
-            # print("___________________________________getin3 ")
-            # print(dfCur)
             opendNumberMonth=len(dfCur.loc[df['Action'] =='PR Opened'])+residualOpen
             closedNumberMonth=len(dfCur.loc[df['Action']=='PR Closed'])
             mergedNumberMonth=len(dfCur.loc[df['Action']=='PR Merged'])    
@@ -282,51 +268,14 @@ def process_data(
             openedNumberList.append(opendNumberMonth)
             dateCur=str(yearCur) + "-" + str(monthCur)
             dateList.append(dateCur)
-            # print("openddNumber=",end='')
-            # print(opendNumberMonth)
-            # print("closed and merged=",end="")
-            # print(closedAndMerged)
-            # print("closedNumber=",end='')
-            # print(closedNumberMonth)
-            # print("mergeddNumber=",end='')
-            # print(mergedNumberMonth)
-            # print("_________________________")
-            # print("_________________________")
-            # print("_________________________")
-            # print("_________________________")
-            # print("_________________________")
-            # print("_________________________")
-    print("_______________________-testGraph4")
-    print("_______________________-testGraph4")
-    print("_______________________-testGraph4")
-    print("_______________________-testGraph4")
-    print("_______________________-testGraph4")
-    print("_______________________-testGraph4")
-    print("_______________________-testGraph4")
     data = {'date':dateList,
        'opened PR':openedNumberList,
        'closed PR':closedNumberList}
     df=pd.DataFrame(data)
-    print(len(df['date']))
-    print(len(df['opened PR']))
-    print(len(df['closed PR']))
     return df
 
 
 def create_figure(df: pd.DataFrame):
-    print("____________________________getin—___createFigure")
-    print("____________________________getin—___createFigure")
-    print("____________________________getin—___createFigure")
-    print("____________________________getin—___createFigure")
-    print("____________________________getin—___createFigure")
-    print("____________________________getin—___createFigure")
-    print(len(df['date']))
-    print(len(df['opened PR']))
-    print(len(df['closed PR']))
-    print("____________________________getin_______df___output")
-    print("____________________________getin_______df___output")
-    print("____________________________getin_______df___output")
-    print("____________________________getin_______df___output")
     color_seq = [
         "#B5B682",  # sage
         "#c0bc5d",  # citron (yellow-ish)
@@ -336,9 +285,6 @@ def create_figure(df: pd.DataFrame):
         "#C7A5A5",  # rosy brown
     ]
     fig = px.line(df, x='date', y=['opened PR', 'closed PR'],color_discrete_sequence=color_seq)
-    print("____________________________getin_0")
-    print("____________________________getin_0")
-    print("____________________________getin_0")
     fig.update_layout(
         xaxis_title="Date",
         yaxis_title="open PR & closed PR",
@@ -346,40 +292,4 @@ def create_figure(df: pd.DataFrame):
         font=dict(size=14),
         legend_title="Repo Name",
     )
-    print("____________________________getin_1")
-    print("____________________________getin_1")
-    print("____________________________getin_1")
-    
-
-    # y_axis = "prs_issues_actions_weighted"
-    # y_title = "Weighted PR/Issue Actions"
-    # if log:
-    #     y_axis = "log_prs_issues_actions_weighted"
-    #     y_title = "Log of Weighted PR/Issue Actions"
-
-    # # graph generation
-    # fig = px.scatter(
-    #     df,
-    #     x="log_num_commits",
-    #     y=y_axis,
-    #     color="repo_name",
-    #     size="log_num_contrib",
-    #     hover_data=["repo_name", "Commit", "PR Opened", "Issue Opened", "num_unique_contributors"],
-    #     color_discrete_sequence=color_seq,
-    # )
-
-    # fig.update_traces(
-    #     hovertemplate="Repo: %{customdata[0]} <br>Commits: %{customdata[1]} <br>Total PRs: %{customdata[2]}"
-    #     + "<br>Total Issues: %{customdata[3]} <br>Total Contributors: %{customdata[4]}<br><extra></extra>",
-    # )
-
-    # # layout styling
-    # fig.update_layout(
-    #     xaxis_title="Logarithmic Commits",
-    #     yaxis_title=y_title,
-    #     margin_b=40,
-    #     font=dict(size=14),
-    #     legend_title="Repo Name",
-    # )
-
     return fig

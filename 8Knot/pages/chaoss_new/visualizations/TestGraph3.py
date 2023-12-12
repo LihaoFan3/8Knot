@@ -207,7 +207,7 @@ TestGraph3 = dbc.Card(
     [Input(f"popover-target-{PAGE}-{VIZ_ID}", "n_clicks")],
     [State(f"popover-{PAGE}-{VIZ_ID}", "is_open")],
 )
-def toggle_popover(n, is_open):
+def toggle_popover3(n, is_open):
     if n:
         return not is_open
     return is_open
@@ -229,7 +229,7 @@ def toggle_popover(n, is_open):
     ],
     background=True,
 )
-def project_velocity_graph(
+def project_velocity_graph3(
     repolist, log, i_o_weight, i_c_weight, pr_o_weight, pr_m_weight, pr_c_weight, start_date, end_date
 ):
 
