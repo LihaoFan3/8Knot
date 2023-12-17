@@ -10,7 +10,7 @@ from .visualizations.TestGraph3 import TestGraph3
 from .visualizations.TestGraph4 import TestGraph4
 warnings.filterwarnings("ignore")
 
-dash.register_page(__name__, path="/chaoss")
+dash.register_page(__name__, path="/chaoss_new")
 
 layout = dbc.Container(
     [
