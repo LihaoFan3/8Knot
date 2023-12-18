@@ -10,6 +10,7 @@ from .visualizations.release_frequency import gc_RELEASE_FREQUENCY
 from .visualizations.commit_frequency import gc_COMMIT_FREQUENCY
 from .visualizations.bus_factor import gc_bus_factor
 from .visualizations.contributor_count import gc_contributor_count
+from .visualizations.close_ratio_issue import gc_close_ratio_Issue
 
 warnings.filterwarnings("ignore")
 
@@ -41,7 +42,15 @@ layout = dbc.Container(
             ],
             align="center",
             style={"marginBottom": ".5%"}
-            )
+        ),
+        dbc.Row(
+            [
+                dbc.Col(gc_close_ratio_Issue, width=6),
+            ],
+            align="center",
+            style={"marginBottom": ".5%"}
+            )        
+    
     ],
     fluid=True,
 )
